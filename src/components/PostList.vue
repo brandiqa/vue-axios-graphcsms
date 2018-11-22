@@ -6,21 +6,36 @@
 </template>
 
 <script>
+import { ENDPOINT, apiClient, POSTS_BY_CATEGORY_QUERY } from '../graphcms.js';
+
 export default {
   name: "PostList",
   data(){
     return {
-      category: ''
+      category: '',
+      posts: []
+    }
+  },
+  methods: {
+    async fetchPosts() {
+      console.log("Fetching posts...", this.category)
+      try {
+        const response = await apiClient.post(ENDPOINT, {
+          query: POSTS_BY_CATEGORY_QUERY,
+          variables: {
+            category: this.category
+          }
+        });
+        console.log('Received', response.data);
+      } catch (error) {
+        console.log(error)
+      }
+
     }
   },
   created() {
     this.category = this.$route.name;
     this.fetchPosts();
-  },
-  methods: {
-    fetchPosts() {
-      // console.log("Fetching posts...", this.category)
-    }
   },
   watch: {
     $route(to, from) {
