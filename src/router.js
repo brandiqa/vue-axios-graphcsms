@@ -10,22 +10,22 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Featured',
       component: Home
     },
     {
       path: '/food',
-      name: 'food',
+      name: 'Food',
       component: Home
     },
     {
       path: '/fashion',
-      name: 'fashion',
+      name: 'Fashion',
       component: Home
     },
     {
       path: '/beauty',
-      name: 'beauty',
+      name: 'Beauty',
       component: Home
     },
 

@@ -1,6 +1,7 @@
 <template>
   <div class="home">
     <PostList />
+    <p>{{ category}} </p>
   </div>
 </template>
 
@@ -12,6 +13,17 @@ export default {
   name: 'home',
   components: {
     PostList
+  },
+  data(){
+    return {
+      category: ''
+    }
+  },
+  watch: {
+    $route(to, from) {
+      this.category = this.$route.name;
+      console.log(this.category)
+    }
   }
 }
 </script>
