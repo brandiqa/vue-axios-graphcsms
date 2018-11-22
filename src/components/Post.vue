@@ -17,19 +17,42 @@
 </template>
 
 <script>
+import { ENDPOINT, apiClient, POST_BY_SLUG_QUERY } from '../graphcms.js';
+
 export default {
   data() {
     return {
       loading: false,
-      post: {
-        title: 'First Post',
-        slug: 'first-post',
-        content:'My very first post',
-        categories:[
-          { name: "Featured" },
-          { name: "Food" },
-        ]
+      slug: '',
+      post: { }
+    }
+  },
+  methods: {
+    async fetchPost() {
+      try {
+        this.loading = true;
+        const response = await apiClient.post(ENDPOINT, {
+          query: POST_BY_SLUG_QUERY,
+          variables: {
+            slug: this.slug
+          }
+        });
+
+        const body = await response.data.data;
+        this.post = body.post;
+        this.loading = false;
+      } catch (error) {
+        console.log(error)
       }
+    }
+  },
+  created() {
+    this.slug = this.$route.params.slug;
+    this.fetchPost();
+  },
+   watch: {
+    $route(to, from) {
+     console.log( 'rouute chanhe' ,this.$route)
     }
   }
 }
