@@ -29,4 +29,25 @@ export const POSTS_BY_CATEGORY_QUERY = `
         }
       }
     }
-  }`;
+  }
+`
+
+export const POST_BY_SLUG_QUERY=`
+  query PostBySlug($slug: String!){
+  post(where: {
+    slug: $slug
+  })
+  {
+    id
+    title
+    content
+    categories {
+      name
+    }
+    comments {
+      name
+      message
+    }
+  }
+}
+`
