@@ -2,7 +2,7 @@
   <section class="post-list">
     <h1>{{ category }} Articles</h1>
     <hr/>
-    <b-card tag="article" v-for="post in posts" :key="post.id" :title="post.title" :sub-title="post.categories.map(cat => cat.name)">
+    <b-card tag="article" v-for="post in posts" :key="post.id" :title="post.title" :sub-title="post.categories.map(cat => cat.name).toString()">
       <p class="card-text">
         {{ post.content }}
       </p>
@@ -21,28 +21,11 @@ export default {
   data(){
     return {
       category: '',
-      posts: [{
-        title: 'First Post',
-        slug: 'first-post',
-        content:'My very first post',
-        categories:[
-          { name: "Featured" },
-          { name: "Food" },
-        ]
-      },
-      {
-        title: 'Second Post',
-        slug: 'second-post',
-        content:'My very second post',
-        categories:[
-          { name: "Fashion" },
-        ]
-      }]
+      posts: []
     }
   },
   methods: {
     async fetchPosts() {
-      console.log("Fetching posts...", this.category)
       try {
         const response = await apiClient.post(ENDPOINT, {
           query: POSTS_BY_CATEGORY_QUERY,
@@ -50,7 +33,9 @@ export default {
             category: this.category
           }
         });
-        console.log('Received', response.data);
+
+        const body = await response.data.data;
+        this.posts = await body.category.posts;
       } catch (error) {
         console.log(error)
       }
@@ -59,12 +44,13 @@ export default {
   },
   created() {
     this.category = this.$route.name;
-    // this.fetchPosts();
+    this.fetchPosts();
   },
   watch: {
     $route(to, from) {
       this.category = this.$route.name;
-      // this.fetchPosts();
+      this.posts = [];
+      this.fetchPosts();
     }
   }
 }

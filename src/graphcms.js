@@ -24,6 +24,9 @@ export const POSTS_BY_CATEGORY_QUERY = `
         slug
         title
         content
+        categories {
+          name
+        }
       }
     }
   }`;
