@@ -2,6 +2,14 @@
   <section class="post-list">
     <h1>{{ category }} Articles</h1>
     <hr/>
+    <b-card tag="article" v-for="post in posts" :key="post.id" :title="post.title" :sub-title="post.categories.map(cat => cat.name)">
+      <p class="card-text">
+        {{ post.content }}
+      </p>
+      <b-button :href="'post/' + post.slug" variant="primary">
+        Read Post
+      </b-button>
+    </b-card>
   </section>
 </template>
 
@@ -13,7 +21,23 @@ export default {
   data(){
     return {
       category: '',
-      posts: []
+      posts: [{
+        title: 'First Post',
+        slug: 'first-post',
+        content:'My very first post',
+        categories:[
+          { name: "Featured" },
+          { name: "Food" },
+        ]
+      },
+      {
+        title: 'Second Post',
+        slug: 'second-post',
+        content:'My very second post',
+        categories:[
+          { name: "Fashion" },
+        ]
+      }]
     }
   },
   methods: {
@@ -35,12 +59,12 @@ export default {
   },
   created() {
     this.category = this.$route.name;
-    this.fetchPosts();
+    // this.fetchPosts();
   },
   watch: {
     $route(to, from) {
       this.category = this.$route.name;
-      this.fetchPosts();
+      // this.fetchPosts();
     }
   }
 }
