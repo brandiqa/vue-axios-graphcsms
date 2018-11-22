@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <PostList />
-    <p>{{ category}} </p>
+    <PostList :category="category"/>
   </div>
 </template>
 
@@ -18,6 +17,9 @@ export default {
     return {
       category: ''
     }
+  },
+  created() {
+    this.category = this.$route.name;
   },
   watch: {
     $route(to, from) {

@@ -1,33 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link>
-      <router-link to="/food">Food</router-link>
-      <router-link to="/fashion">Fashion</router-link>
-      <router-link to="/beauty">Beauty</router-link>
-    </div>
-    <router-view/>
+    <b-navbar toggleable="md" type="dark" variant="info">
+      <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
+      <b-navbar-brand href="#">GraphCMS Vue</b-navbar-brand>
+      <b-collapse is-nav id="nav_collapse">
+        <b-navbar-nav>
+          <router-link  class="nav-link" to="/" exact>Home</router-link>
+          <router-link  class="nav-link" to="/food">Food</router-link>
+          <router-link  class="nav-link" to="/fashion">Fashion</router-link>
+          <router-link  class="nav-link" to="/beauty">Beauty</router-link>
+        </b-navbar-nav>
+      </b-collapse>
+    </b-navbar>
+
+    <b-container>
+      <router-view/>
+    </b-container>
   </div>
 </template>
 
 <style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>
