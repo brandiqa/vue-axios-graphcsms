@@ -43,11 +43,10 @@ export default {
 
         const body = await response.data.data;
         this.posts = await body.category.posts;
-         this.loading = false;
+        this.loading = false;
       } catch (error) {
         console.log(error)
       }
-
     }
   },
   created() {

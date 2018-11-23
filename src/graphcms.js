@@ -51,3 +51,20 @@ export const POST_BY_SLUG_QUERY=`
   }
 }
 `
+
+export const CREATE_COMMENT_MUTATION=`
+mutation CreateComment($post: PostWhereUniqueInput!, $name: String!, $message: String!){
+  createComment(data: {
+    name: $name,
+    message: $message,
+    post: {
+      connect: $post
+    }
+  })
+  {
+    id
+    name
+    message
+  }
+}
+`

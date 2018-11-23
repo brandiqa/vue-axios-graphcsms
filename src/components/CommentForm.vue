@@ -1,5 +1,6 @@
 <template>
   <section class="comment-form">
+    <h4 class="text-muted">Comment Form</h4>
     <b-form @submit.prevent="onSubmit">
       <b-form-group label="Name">
         <b-form-input id="input-name" type="text" v-model="name" placeholder="Enter your name" required></b-form-input>
@@ -19,6 +20,8 @@
 </template>
 
 <script>
+import { apiClient, ENDPOINT, CREATE_COMMENT_MUTATION } from "../graphcms.js";
+
 export default {
   name: "CommentForm",
   props: ['post'],
@@ -29,14 +32,35 @@ export default {
     }
   },
   methods: {
-    onSubmit() {
-      console.log(this.post)
-      console.log(this.name, this.message);
+    async onSubmit() {
+      const formattedComment = {
+        name: this.name,
+        message: this.message,
+        post: {
+          id: this.post.id
+        }
+      }
+      try {
+        const response = await apiClient.post(ENDPOINT, {
+          query: CREATE_COMMENT_MUTATION,
+          variables: formattedComment
+        });
+
+       const body = await response.data.data;
+       const newComment = body.createComment;
+       this.post.comments.push(newComment);
+       this.name = '';
+       this.message = '';
+      } catch (error) {
+          console.log(error)
+      }
     }
   }
 }
 </script>
 
 <style>
-
+  .comment-form {
+    margin-top: 35px;
+  }
 </style>

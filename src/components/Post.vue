@@ -22,7 +22,7 @@
    <!-- Comment form -->
     <b-row v-if="!loading">
      <b-col>
-       <CommentForm :postId="post.id" />
+      <CommentForm :post="post" />
      </b-col>
    </b-row>
   </section>
