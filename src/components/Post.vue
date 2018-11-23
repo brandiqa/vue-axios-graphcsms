@@ -49,11 +49,6 @@ export default {
   created() {
     this.slug = this.$route.params.slug;
     this.fetchPost();
-  },
-   watch: {
-    $route(to, from) {
-     console.log( 'rouute chanhe' ,this.$route)
-    }
   }
 }
 </script>

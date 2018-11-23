@@ -11,9 +11,9 @@
       <p class="card-text">
         {{ post.content }}
       </p>
-      <b-button :href="'post/' + post.slug" variant="primary">
+      <router-link class="btn btn-primary" :to="'post/' + post.slug">
         Read Post
-      </b-button>
+      </router-link>
     </b-card>
   </section>
 </template>
