@@ -43,7 +43,7 @@ export default {
     return {
       loading: false,
       slug: '',
-      post: { }
+      post: {},
     }
   },
   methods: {
