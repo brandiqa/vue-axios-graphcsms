@@ -13,13 +13,32 @@
       <p>{{ post.content }}</p>
      </b-col>
    </b-row>
+   <!-- List of comments -->
+   <b-row v-if="!loading">
+     <b-col>
+       <CommentList :comments="post.comments" />
+     </b-col>
+   </b-row>
+   <!-- Comment form -->
+    <b-row v-if="!loading">
+     <b-col>
+       <CommentForm :postId="post.id" />
+     </b-col>
+   </b-row>
   </section>
 </template>
 
 <script>
 import { ENDPOINT, apiClient, POST_BY_SLUG_QUERY } from '../graphcms.js';
+import CommentList from '@/components/CommentList';
+import CommentForm from '@/components/CommentForm';
 
 export default {
+  name: 'Post',
+  components: {
+    CommentList,
+    CommentForm
+  },
   data() {
     return {
       loading: false,
