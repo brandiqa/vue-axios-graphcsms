@@ -15,7 +15,3 @@ export default {
   props: ["comments"],
 }
 </script>
-
-<style>
-
-</style>

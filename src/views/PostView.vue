@@ -9,7 +9,7 @@
 import Post from '@/components/Post.vue'
 
 export default {
-  name: 'home',
+  name: 'PostView',
   components: {
     Post
   }
