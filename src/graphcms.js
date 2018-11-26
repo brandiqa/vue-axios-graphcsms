@@ -1,7 +1,8 @@
 import axios from 'axios'
 
-export const ENDPOINT = process.env.VUE_APP_ENDPOINT;
-const TOKEN = process.env.VUE_APP_TOKEN;
+export const ENDPOINT = process.env.VUE_APP_ENDPOINT || 'https://api-euwest.graphcms.com/v1/cjoo5rche2i7o01ghhh6crlfo/master';
+const ro_token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ2ZXJzaW9uIjoxLCJ0b2tlbklkIjoiZWIwNjZkMTctODI5MC00Mzk1LTgwZWMtODkxN2Q5MjY0NGEwIn0._eYwFVutVKAz7-BhMrIgTHazUwxRhMdR9Unfnr44pHo';
+const TOKEN = process.env.VUE_APP_TOKEN || ro_token;
 
 const headers = {
   'Content-Type': 'application/json',
