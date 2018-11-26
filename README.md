@@ -10,6 +10,8 @@ VUE_APP_TOKEN=
 ## Project setup
 
 ```bash
+git clone git@github.com:brandiqa/vue-axios-graphcsms.git
+cd vue-axios-graphcms
 npm install
 ```
 
@@ -18,6 +20,8 @@ npm install
 ```bash
 npm run serve
 ```
+
+Open browser at URL [localhost:8080](http://localhost:8080)
 
 ### Compiles and minifies for production
 
@@ -29,10 +33,4 @@ npm run build
 
 ```bash
 npm run test
-```
-
-### Lints and fixes files
-
-```bash
-npm run lint
 ```

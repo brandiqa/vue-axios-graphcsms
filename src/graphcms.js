@@ -60,7 +60,8 @@ mutation CreateComment($post: PostWhereUniqueInput!, $name: String!, $message: S
     message: $message,
     post: {
       connect: $post
-    }
+    },
+    status: PUBLISHED
   })
   {
     id
